@@ -1,0 +1,82 @@
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="personaje.js"></script>
+    <script src="enemigo.js"></script>
+    <script src="heroe.js"></script>
+    <script src="funciones.js"></script>
+
+</head>
+<style type="text/css">
+    *{
+        font-family: Verdana;
+    }
+    body{
+        margin: 0;
+    }
+
+    .log {
+        margin: 1em;
+        border: black 5px solid;
+        vertical-align: auto;
+        text-align: center;
+    }
+
+
+    .boton {
+        background-color: blue;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 12px;
+    }
+
+    .boton:hover {
+        background-color: white;
+        border: blue 3px solid;
+        color: blue;
+    }
+</style>
+
+<body>
+    <div class="heroe">
+        <h2>Heroe</h1>
+        <h3 id="nombreHeroe"></h2>
+        <h4>Nivel:
+            <lvl id="nivel"></lvl>
+        </h4>
+        <h4>Experiencia:
+            <exp id="experiencia"></exp>
+        </h4>
+        <h4>Salud:
+            <hp id="salud"></hp>
+        </h4>
+        <button class="boton" onclick="botonAtacar()">ATACAR</button>
+    </div>
+
+    <div class="enemigo">
+        <h2>Enemigo</h1>
+        <h3 id="nombreEnemigo"></h2>
+        <h4>Nivel:
+            <lvl id="nivelEnemigo"></lvl>
+        </h4>
+        <h4>Salud:
+            <hp id="saludEnemigo"></hp>
+        </h4>
+    </div>
+
+    <div class="log">
+        <h2>LOG DEL COMBATE</h1>
+    </div>
+
+
+</body>
+<footer>
+    <script src="main.js"></script>
+</footer>

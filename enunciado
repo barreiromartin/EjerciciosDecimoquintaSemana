@@ -1,0 +1,38 @@
+Ejercicio 1
+Modifica el valor de nivel del héroe en el HTML para que muestre el nivel
+actual del héroe. Debe cambiar cuando empiece la partida y cuando este
+suba de nivel.
+
+Ejercicio 2
+Modifica el valor de la experiencia del héroe en el HTML para que muestre la
+experiencia que tiene en todo momento.
+
+Ejercicio 3
+Modifica el valor de salud para que muestre la salud actual y la salud total tal
+que “Salud: 10/10”. Debe cambiarse cada vez que se reduzca o aumente.
+
+Ejercicio 4
+Modifica los valores del enemigo para que funcionen como los del héroe. La
+vida debe modificarse para mostrar el valor actual y el total y el nivel debe
+cambiar dependiendo del enemigo.
+
+Ejercicio 5
+Modifica los atributos del héroe tal que:
+- Tamaño de fuente: 20 pts
+- Color de fuente: azul
+- Centrar en el medio de la página
+Pista: $().style(...) para modificar la hoja de estilos en JQuery
+
+Ejercicio 6
+Modifica los atributos del enemigo tal que:
+- Tamaño de fuente: 16 pts
+- Color de fuente: rojo
+- Añadir un borde negro
+
+Ejercicio 7
+Modifica el layout de la página para que héroe y enemigo estén uno a la
+izquierda y el otro a la derecha.
+Ejercicio extra
+JQuery permite el uso de animaciones también. Os animo a buscar
+diferentes ejemplos online y utilizarlos. Algunas podrían ser que el texto
+tiemble cuando cambia o fade out del personaje que pierda.
