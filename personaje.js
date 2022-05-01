@@ -4,6 +4,7 @@ class personaje {
         this.vida = vida;
         this.ataque = ataque;
         this.nivel = nivel;
+        this.defensa = 0;
     }
 
     set setVida(vida) {
@@ -17,7 +18,7 @@ class personaje {
     set setNivel(nivel) {
         this.nivel = nivel;
     }
-    
+
 
     //GETTERS
     get getNombre() {
@@ -38,6 +39,10 @@ class personaje {
 
     get getExperiencia() {
         return this.experiencia;
+    }
+
+    get getDefensa() {
+        return this.defensa;
     }
 
     //FUNCIONES
@@ -64,6 +69,13 @@ class personaje {
     puntosDeVida() {
         var hp = this.vida + (this.nivel * 100);
         return hp;
+    }
+
+    ataqueDefendido(dañoDeAtaque){
+        var defendido = dañoDeAtaque / this.defensa
+        dañoDeAtaque -= defendido;
+        return dañoDeAtaque;
+        
     }
 
 

@@ -1,7 +1,8 @@
 class heroe extends personaje {
-    constructor(nombre, vida, ataque, nivel) {
-        super(nombre, vida, ataque, nivel);
+    constructor(nombre, vida, vidaMax, ataque, nivel) {
+        super(nombre, vida, vidaMax, ataque, nivel);
         this.experiencia = 0;
+        this.defensa = 5;
     }
 
 
@@ -26,8 +27,4 @@ class heroe extends personaje {
         }
         
     }
-}
-
-function botonAtacar() {
-    console.log("hola")
 }

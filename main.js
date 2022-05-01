@@ -1,83 +1,5 @@
-function __updateHTML__() {
-
-}
-
-__updateHTML__()
-
-
-
-function __main__() {
-    var martin = new heroe("Martín", 1000, 200, 2);
-    var martinVidaMaxima = martin.getVida
-    $(".heroe").css({ "color": "blue", "font-size": "20px", "text-align": "center", "width": "50%", "display": "inline-block", "heigth": "10%" })
-
-    $(".enemigo").css({ "color": "red", "font-size": "20px", "text-align": "center", "width": "50%", "display": "inline-block", "heigth": "10%", "float": "right" })
-
-    //HEROE
-    $("#nivel").html(martin.getNivel);
-    $("#nombreHeroe").html(martin.getNombre);
-    $("#experiencia").html(martin.getExperiencia);
-    $("#salud").html(martinVidaMaxima + "/" + martin.getVida);
-
-    /*do {
-        var continuar = true;
-        opcion = parseInt(prompt("HEROE vs ENEMIGOS - Menú\n---------------\n1 - Combatir\n2 - Héroe\n3 - Finalizar la Aventura"));
-        var contador = 0;
-        switch (opcion) {
-            case 1:
-                var enemigo1 = new enemigo("Inés", 1000, 200, 1);
-                turno = 1;
-                do {
-                    contador++
-
-                    if (turno == 1) {
-                        //alert("HEROE vs ENEMIGOS\n---------------\nMartín: " + martin.getVida + " --- " + enemigo1.getNombre + ": " + enemigo1.getVida + "\nTurno " + contador + "\nAtaca " + martin.getNombre + " inflinge ¡" + martin.dañoDeAtaque() + "!\n")
-
-                        var vidaRestante = parseInt(enemigo1.getVida) - parseInt(martin.dañoDeAtaque());
-                        enemigo1.setVida = vidaRestante;
-
-                        turno = 0;
-
-                    } else if (turno == 0) {
-                        //alert("HEROE vs ENEMIGOS\n---------------\nMartín: " + martin.getVida + " --- " + enemigo1.getNombre + ": " + enemigo1.getVida + "\nTurno " + contador + "\nAtaca " + enemigo1.getNombre + " inflinge ¡" + enemigo1.dañoDeAtaque() + "!")
-
-                        var vidaRestante = martin.getVida - enemigo1.dañoDeAtaque();
-                        martin.setVida = vidaRestante;
-
-                        turno = 1;
-                    }
-
-                } while (enemigo1.conVida() && martin.conVida())
-
-                if (martin.conVida()) {
-                    alert("HÉROE vs ENEMIGOS\n---------------\n¡VICTORIA!\nGanas " + enemigo1.getExperiencia + " puntos de Experiencia.\n");
-
-                } else {
-                    alert("DERROTA");
-                    break;
-                }
-
-                //Comprobar Nivel
-                martin.setExperiencia = martin.getExperiencia + enemigo1.getExperiencia;
-                martin.experienciaObtenida(enemigo1.getExperiencia);
-
-                break;
-            case 2:
-                alert("HEROE vs ENEMIGOS\n---------------\n" + martin.getNombre + "\nHP: " + martin.getVida + "\nATK: " + martin.dañoDeAtaque() + "\nNVL: " + martin.getNivel);
-                break;
-
-            case 3:
-                continuar = false;
-                break;
-        }
-
-    } while (continuar)
-*/
-
-
-
-
-
+//SELECCIONAR ENEMIGO RAND
+function seleccionarRival() {
     var zombie = new enemigo("ZomBIe", 1000, 220, 1)
     var gusano = new enemigo("Gusano", 800, 100, 1)
     var esqueleto = new enemigo("Esqueleto", 1800, 200, 1)
@@ -86,19 +8,123 @@ function __main__() {
     var arrayEnemigos = []
     arrayEnemigos = [zombie, gusano, esqueleto, baron]
 
-    //seleccionar enemigo
     rangoMaximo = arrayEnemigos.length - 1
     rand = numeroRandom(0, rangoMaximo)
     rival = arrayEnemigos[rand]
+    return rival
+}
 
-    console.log(rival)
-
+function mostrarRival(rival) {
     $("#nombreEnemigo").html(rival.getNombre);
     $("#nivelEnemigo").html(rival.getNivel);
-    $("#saludEnemigo").html(rival.getVida);
+    var rivalVidaMaxima = rival.getVida;
+    $("#saludEnemigo").html(rivalVidaMaxima + "/" + rival.getVida);
+
+    log = rival.getNombre + " ha aparecido!"
+    $(".log").html(log);
+}
+
+function mostrarHeroe(martin) {
+    $("#nivel").html(martin.getNivel);
+    $("#nombreHeroe").html(martin.getNombre);
+    $("#experiencia").html("10 / " + martin.getExperiencia);
+    var martinVidaMaxima = martin.getVida
+    $("#salud").html(martinVidaMaxima + "/" + martin.getVida);
+}
+
+function botonAtaque(martin, rival) {
+    var log = ""
+
+    var vidaRestante = parseInt(rival.getVida) - parseInt(martin.dañoDeAtaque());
+    rival.setVida = vidaRestante;
+    $("#saludEnemigo").html(rival.getVidaMax + "/" + rival.getVida);
+
+    log += "Martin ataca e inflinfe " + martin.dañoDeAtaque() + " puntos de vida! "
+
+    if (rival.conVida()) {
+        var vidaRestante = martin.getVida - rival.dañoDeAtaque();
+        martin.setVida = vidaRestante;
+        $("#salud").html(martin.getVidaMax + "/" + martin.getVida);
+
+        log += rival.getNombre + " ataca y castiga con " + rival.dañoDeAtaque() + " puntos de vida!"
+    } else {
+        martin.experienciaObtenida(rival.getExperiencia)
+        log += rival.getNombre + " ha sido derrotado! Ganas " + rival.getExperiencia + " de EXP"
+        $("#experiencia").html("10 / " + martin.getExperiencia);
+    }
+
+
+    if (!martin.conVida()) {
+        log += "EL HEROE HA CAIDO! :'("
+        $("#boton").css({ "visibility": "hidden" })
+        $("#boton2").css({ "visibility": "hidden" })
+
+    }
+
+    if (!rival.conVida()) {
+        opcion = parseInt(prompt("ENEMIGO DERROTADO\n1 - Nueva Oleada\n2 - Terminar Partida"));
+        switch (opcion) {
+            case 1:
+                rival = seleccionarRival();
+                mostrarRival(rival);
+                break;
+            case 2:
+                log = "Fin de la partida."
+                $("#boton").css({ "visibility": "hidden" })
+                $("#boton2").css({ "visibility": "hidden" })
+                break;
+        }
+    }
+
+    $(".log").html(log);
+}
+//BOTON DEFENDER
+function botonDefensa(martin, rival) {
+    var log = ""
+
+    var ataqueRival = rival.dañoDeAtaque()
+    var vidaRestante = parseInt(martin.getVida) - parseInt(martin.ataqueDefendido(ataqueRival));
+    martin.setVida = vidaRestante;
+    $("#salud").html(martin.getVidaMax + "/" + martin.getVida);
+
+    log += "Martin se defiende y recibe " + Math.round(martin.ataqueDefendido(ataqueRival)) + " puntos de vida! "
+
+
+    if (!martin.conVida()) {
+        $("#boton").css({ "visibility": "hidden" })
+        $("#boton2").css({ "visibility": "hidden" })
+        log += "EL HEROE HA CAIDO! :'("
+    }
+
+    if (!rival.conVida()) {
+
+        prompt("Continuar Jugando")
+    }
+
+    $(".log").html(log);
+}
+
+function __main__() {
+    var martin = new heroe("Martín", 1000, 200, 2);
+
+    mostrarHeroe(martin)
+
+    var rival = seleccionarRival()
+    mostrarRival(rival);
+
+    var boton = document.getElementById("boton");
+    boton.addEventListener('click', () => {
+        botonAtaque(martin, rival)
+    })
+
+    boton2 = document.getElementById("boton2");
+    boton2.addEventListener('click', () => {
+        botonDefensa(martin, rival)
+    });
 
 
 
+}
 
 
-} __main__();
+__main__();

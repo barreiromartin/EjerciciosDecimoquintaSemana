@@ -5,49 +5,74 @@
     <script src="heroe.js"></script>
     <script src="funciones.js"></script>
 
+
+
+
 </head>
 <style type="text/css">
-    *{
+    * {
         font-family: Verdana;
     }
-    body{
+
+    body {
         margin: 0;
     }
 
     .log {
         margin: 1em;
-        border: black 5px solid;
-        vertical-align: auto;
+        border: black 2px solid;
+        vertical-align: center;
         text-align: center;
+        padding: 1em;
+        height: auto;
     }
 
 
-    .boton {
+    #boton, #boton2 {
         background-color: blue;
         border: none;
         color: white;
-        padding: 16px 32px;
+        padding: 8px 16px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        margin: 4px 2px;
         transition-duration: 0.4s;
         cursor: pointer;
         border-radius: 12px;
     }
 
-    .boton:hover {
+
+    #boton:hover, #boton2:hover {
         background-color: white;
-        border: blue 3px solid;
         color: blue;
+    }
+
+    .heroe {
+        color: blue;
+        font-size: 20px;
+        text-align: center;
+        width: 50%;
+        display: inline-block;
+
+    }
+
+    .enemigo {
+        color: red;
+        font-size: 20px;
+        text-align: center;
+        width: 50%;
+        display: inline-block;
+        float: right;
+
     }
 </style>
 
 <body>
     <div class="heroe">
         <h2>Heroe</h1>
-        <h3 id="nombreHeroe"></h2>
+            <h3 id="nombreHeroe">
+        </h2>
         <h4>Nivel:
             <lvl id="nivel"></lvl>
         </h4>
@@ -57,12 +82,14 @@
         <h4>Salud:
             <hp id="salud"></hp>
         </h4>
-        <button class="boton" onclick="botonAtacar()">ATACAR</button>
+        <button id="boton">ATACAR</button>
+        <button id="boton2">DEFENSA</button>
     </div>
 
     <div class="enemigo">
         <h2>Enemigo</h1>
-        <h3 id="nombreEnemigo"></h2>
+            <h3 id="nombreEnemigo">
+        </h2>
         <h4>Nivel:
             <lvl id="nivelEnemigo"></lvl>
         </h4>
@@ -72,7 +99,7 @@
     </div>
 
     <div class="log">
-        <h2>LOG DEL COMBATE</h1>
+        <h2></h2>
     </div>
 
 
