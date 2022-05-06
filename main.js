@@ -116,6 +116,7 @@ function __main__() {
     boton.addEventListener('click', () => {
         botonAtaque(martin, rival)
     })
+    boton.removeEventListener("click", botonAtaque(martin, rival))
 
     boton2 = document.getElementById("boton2");
     boton2.addEventListener('click', () => {
